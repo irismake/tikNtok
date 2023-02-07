@@ -2,12 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:tikntok/constants/gaps.dart';
 import 'package:tikntok/constants/sizes.dart';
 import 'package:tikntok/features/authentication/widgets/auth_button.dart';
+import 'package:tikntok/features/authentication/login_screen.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
 
   void onLoginTap(BuildContext context) {
-    Navigator.of(context).pop();
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const LoginScreen(),
+      ),
+    );
   }
 
   @override
