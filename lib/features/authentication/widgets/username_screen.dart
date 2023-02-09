@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:tikntok/constants/gaps.dart';
+import 'package:tikntok/features/authentication/widgets/email_screen.dart';
 import 'package:tikntok/features/authentication/widgets/form_button.dart';
 
 import '../../../constants/sizes.dart';
@@ -31,6 +32,15 @@ class _UsernameScreenState extends State<UsernameScreen> {
   void dispose() {
     _usernameController.dispose();
     super.dispose();
+  }
+
+  void _onNextTap() {
+    if (_username.isEmpty) return;
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: ((context) => const EmailScreen()),
+      ),
+    );
   }
 
   Widget build(BuildContext context) {
@@ -81,7 +91,10 @@ class _UsernameScreenState extends State<UsernameScreen> {
             cursorColor: Theme.of(context).primaryColor,
           ),
           Gaps.v32,
-          Formbutton(disabled: _username.isEmpty),
+          GestureDetector(
+            onTap: _onNextTap,
+            child: Formbutton(disabled: _username.isEmpty),
+          ),
         ]),
       ),
     );
