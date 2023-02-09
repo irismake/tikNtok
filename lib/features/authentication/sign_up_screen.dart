@@ -4,14 +4,23 @@ import 'package:tikntok/constants/gaps.dart';
 import 'package:tikntok/constants/sizes.dart';
 import 'package:tikntok/features/authentication/widgets/auth_button.dart';
 import 'package:tikntok/features/authentication/login_screen.dart';
+import 'package:tikntok/features/authentication/widgets/username_screen.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
 
-  void onLoginTap(BuildContext context) {
+  void _onLoginTap(BuildContext context) {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => const LoginScreen(),
+      ),
+    );
+  }
+
+  void _onEmailTap(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const UsernameScreen(),
       ),
     );
   }
@@ -25,7 +34,7 @@ class SignUpScreen extends StatelessWidget {
           horizontal: Sizes.size40,
         ),
         child: Column(
-          children: const [
+          children: [
             Gaps.v80,
             Text(
               "Sign up for TikTok",
@@ -44,9 +53,12 @@ class SignUpScreen extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             Gaps.v40,
-            AuthButton(
-                icon: FaIcon(FontAwesomeIcons.user),
-                text: "Use email & password"),
+            GestureDetector(
+              onTap: () => _onEmailTap(context),
+              child: AuthButton(
+                  icon: FaIcon(FontAwesomeIcons.user),
+                  text: "Use email & password"),
+            ),
             Gaps.v16,
             AuthButton(
               text: "Continue with Apple",
@@ -56,7 +68,7 @@ class SignUpScreen extends StatelessWidget {
         ),
       )),
       bottomNavigationBar: BottomAppBar(
-          color: Colors.grey.shade100,
+          color: Colors.grey.shade50,
           elevation: 1,
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: Sizes.size32),
@@ -66,7 +78,7 @@ class SignUpScreen extends StatelessWidget {
               ),
               Gaps.h5,
               GestureDetector(
-                onTap: () => onLoginTap(context),
+                onTap: () => _onLoginTap(context),
                 child: Text(
                   "Log in",
                   style: TextStyle(
