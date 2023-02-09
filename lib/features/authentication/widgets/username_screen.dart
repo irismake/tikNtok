@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:tikntok/constants/gaps.dart';
+import 'package:tikntok/features/authentication/widgets/form_button.dart';
 
 import '../../../constants/sizes.dart';
 
@@ -19,12 +20,17 @@ class _UsernameScreenState extends State<UsernameScreen> {
   @override
   void initState() {
     super.initState();
-
     _usernameController.addListener(() {
       setState(() {
         _username = _usernameController.text;
       });
     });
+  }
+
+  @override
+  void dispose() {
+    _usernameController.dispose();
+    super.dispose();
   }
 
   Widget build(BuildContext context) {
@@ -75,29 +81,7 @@ class _UsernameScreenState extends State<UsernameScreen> {
             cursorColor: Theme.of(context).primaryColor,
           ),
           Gaps.v32,
-          FractionallySizedBox(
-            widthFactor: 1,
-            child: AnimatedContainer(
-              padding: EdgeInsets.symmetric(
-                vertical: Sizes.size16,
-              ),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(3),
-                color: _username.isEmpty
-                    ? Colors.grey.shade300
-                    : Theme.of(context).primaryColor,
-              ),
-              duration: const Duration(milliseconds: 300),
-              child: Text(
-                'Next',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
-          ),
+          Formbutton(disabled: _username.isEmpty),
         ]),
       ),
     );
