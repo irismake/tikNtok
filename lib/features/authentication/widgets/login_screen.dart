@@ -3,12 +3,21 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tikntok/constants/gaps.dart';
 import 'package:tikntok/constants/sizes.dart';
 import 'package:tikntok/features/authentication/widgets/auth_button.dart';
+import 'package:tikntok/features/authentication/widgets/login_form_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
   void _onSignUpTap(BuildContext context) {
     Navigator.of(context).pop();
+  }
+
+  void _onEmailLoginTap(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: ((context) => LoginFormScreen()),
+      ),
+    );
   }
 
   @override
@@ -20,7 +29,7 @@ class LoginScreen extends StatelessWidget {
           horizontal: Sizes.size40,
         ),
         child: Column(
-          children: const [
+          children: [
             Gaps.v80,
             Text(
               "Log in to TikTok",
@@ -39,9 +48,13 @@ class LoginScreen extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             Gaps.v40,
-            AuthButton(
+            GestureDetector(
+              onTap: () => _onEmailLoginTap(context),
+              child: AuthButton(
                 icon: FaIcon(FontAwesomeIcons.user),
-                text: "Use email & password"),
+                text: "Use email & password",
+              ),
+            ),
             Gaps.v16,
             AuthButton(
               text: "Continue with Apple",
