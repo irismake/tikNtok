@@ -17,7 +17,7 @@ class SignUpScreen extends StatelessWidget {
     );
   }
 
-  void _onEmailTap(BuildContext context) {
+  void _onEmailSignTap(BuildContext context) {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => const UsernameScreen(),
@@ -53,16 +53,16 @@ class SignUpScreen extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             Gaps.v40,
-            GestureDetector(
-              onTap: () => _onEmailTap(context),
-              child: AuthButton(
-                  icon: FaIcon(FontAwesomeIcons.user),
-                  text: "Use email & password"),
+            AuthButton(
+              icon: FaIcon(FontAwesomeIcons.user),
+              text: "Use email & password",
+              nextTap: _onEmailSignTap,
             ),
             Gaps.v16,
             AuthButton(
               text: "Continue with Apple",
               icon: FaIcon(FontAwesomeIcons.apple),
+              nextTap: _onEmailSignTap,
             ),
           ],
         ),
