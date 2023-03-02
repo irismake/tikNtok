@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tikntok/constants/sizes.dart';
 import 'package:tikntok/features/authentication/widgets/sign_up_screen.dart';
+import 'package:tikntok/features/onbording/interests_screen.dart';
 
 void main() {
   runApp(const TikTokApp());
@@ -26,7 +27,7 @@ class TikTokApp extends StatelessWidget {
               fontWeight: FontWeight.w600,
             ),
           )),
-      home: SignUpScreen(),
+      home: const InterestsScreen(),
     );
   }
 }
