@@ -12,12 +12,14 @@ class NavTab extends StatelessWidget {
     required this.text,
     required this.isSelected,
     required this.icon,
+    required this.selectedIcon,
     required this.onTap,
   });
 
   final String text;
   final bool isSelected;
   final IconData icon;
+  final IconData selectedIcon;
   final Function onTap;
 
   @override
@@ -29,12 +31,12 @@ class NavTab extends StatelessWidget {
           color: Colors.black,
           child: AnimatedOpacity(
             opacity: isSelected ? 1 : 0.6,
-            duration: Duration(milliseconds: 100),
+            duration: Duration(milliseconds: 200),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 FaIcon(
-                  icon,
+                  isSelected ? selectedIcon : icon,
                   color: Colors.white,
                 ),
                 Gaps.v5,
