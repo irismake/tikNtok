@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tikntok/features/main_navigation/widgets/nav_tab.dart';
+import 'package:tikntok/features/main_navigation/widgets/post_video_button.dart';
 
 import '../../constants/gaps.dart';
 import '../../constants/sizes.dart';
@@ -40,6 +41,16 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
     });
   }
 
+  void _onPostVideoButtonTap() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+          builder: (context) => Scaffold(
+                appBar: AppBar(title: Text('Record Video')),
+              ),
+          fullscreenDialog: true),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,7 +77,10 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
       bottomNavigationBar: BottomAppBar(
           color: Colors.black,
           child: Padding(
-            padding: EdgeInsets.all(Sizes.size12),
+            padding: EdgeInsets.symmetric(
+              horizontal: Sizes.size2,
+              vertical: Sizes.size12,
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -84,6 +98,10 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                   selectedIcon: FontAwesomeIcons.solidCompass,
                   onTap: () => _onTap(1),
                 ),
+                Gaps.h20,
+                GestureDetector(
+                    onTap: _onPostVideoButtonTap, child: PostVideoButton()),
+                Gaps.h20,
                 NavTab(
                   text: 'Inbox',
                   isSelected: _selectedIndex == 3,
