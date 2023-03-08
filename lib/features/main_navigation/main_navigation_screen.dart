@@ -5,6 +5,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tikntok/features/main_navigation/widgets/nav_tab.dart';
 import 'package:tikntok/features/main_navigation/widgets/post_video_button.dart';
+import 'package:tikntok/features/videos/video_timeline_screen.dart';
 
 import '../../constants/gaps.dart';
 import '../../constants/sizes.dart';
@@ -44,10 +45,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   void _onPostVideoButtonTap() {
     Navigator.of(context).push(
       MaterialPageRoute(
-          builder: (context) => Scaffold(
-                appBar: AppBar(title: Text('Record Video')),
-              ),
-          fullscreenDialog: true),
+          builder: (context) => VideoTimelineScreen(), fullscreenDialog: true),
     );
   }
 

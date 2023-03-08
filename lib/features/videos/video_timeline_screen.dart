@@ -10,10 +10,9 @@ class VideoTimelineScreen extends StatefulWidget {
 }
 
 class _VideoTimelineScreenState extends State<VideoTimelineScreen> {
-  
-int _itemCount = 4;
+  int _itemCount = 4;
 
-
+  final PageController _pageController = PageController();
 
   List colors = [
     Colors.blue,
@@ -21,29 +20,34 @@ int _itemCount = 4;
     Colors.yellow,
     Colors.pink,
   ];
-  
-void _onPageChanged (int page){
-  if(page == _itemCount -1 ){
-    _itemCount = _itemCount + 4;
-    colors.addAll([ 
-      Colors.blue,
-    Colors.red,
-    Colors.yellow,
-    Colors.pink,]);
-  
-  setState(() {
-    
-  });
+
+  void _onPageChanged(int page) {
+    print(page);
+    _pageController.animateToPage(page,
+        duration: const Duration(milliseconds: 100), curve: Curves.linear);
+
+    if (page == _itemCount - 1) {
+      _itemCount = _itemCount + 4;
+      colors.addAll([
+        Colors.blue,
+        Colors.red,
+        Colors.yellow,
+        Colors.pink,
+      ]);
+
+      setState(() {});
+    }
   }
-}
 
   @override
   Widget build(BuildContext context) {
     return PageView.builder(
+      controller: _pageController,
       scrollDirection: Axis.vertical,
       onPageChanged: _onPageChanged,
       itemCount: _itemCount,
-      itemBuilder: (context, index) => Container(color: colors[index],child: Center(child: Text("Screen $index"))),
+      itemBuilder: (context, index) => Container(
+          color: colors[index], child: Center(child: Text("Screen $index"))),
     );
   }
 }
