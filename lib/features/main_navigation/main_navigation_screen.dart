@@ -45,7 +45,9 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   void _onPostVideoButtonTap() {
     Navigator.of(context).push(
       MaterialPageRoute(
-          builder: (context) => VideoTimelineScreen(), fullscreenDialog: true),
+        builder: (context) => VideoTimelineScreen(),
+        fullscreenDialog: true,
+      ),
     );
   }
 
@@ -56,10 +58,14 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
         children: [
           Offstage(
             offstage: _selectedIndex != 0,
-            child: screens[_selectedIndex],
+            child: VideoTimelineScreen(),
           ),
           Offstage(
             offstage: _selectedIndex != 1,
+            child: screens[_selectedIndex],
+          ),
+          Offstage(
+            offstage: _selectedIndex != 2,
             child: screens[_selectedIndex],
           ),
           Offstage(
@@ -75,7 +81,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
       bottomNavigationBar: BottomAppBar(
         color: Colors.black,
         child: Padding(
-          padding: EdgeInsets.symmetric(
+          padding: const EdgeInsets.symmetric(
             horizontal: Sizes.size2,
             vertical: Sizes.size12,
           ),
